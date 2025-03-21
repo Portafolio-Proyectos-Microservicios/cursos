@@ -1,0 +1,12 @@
+server:
+ port: 8091
+
+spring:
+ application:
+  name: cursos
+
+# Config Server
+ config:
+  import: "configserver:"
+  cloud:
+  cloud.config.uri: http://localhost:8888

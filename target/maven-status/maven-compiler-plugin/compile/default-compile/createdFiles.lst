@@ -1,0 +1,8 @@
+com\microservice\cursos\client\WebClientConfig.class
+com\microservice\cursos\service\CursoService.class
+com\microservice\cursos\model\Curso.class
+com\microservice\cursos\service\impl\CursoImpl.class
+com\microservice\cursos\model\EstudianteDTO.class
+com\microservice\cursos\controller\CursoController.class
+com\microservice\cursos\repository\CursoRepository.class
+com\microservice\cursos\CursosApplication.class
