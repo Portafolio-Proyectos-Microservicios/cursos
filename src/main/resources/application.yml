@@ -4,6 +4,8 @@ server:
 spring:
  application:
   name: cursos
+ banner:
+  location: classpath:banner/banner.txt
 
 # Config Server
  config:
