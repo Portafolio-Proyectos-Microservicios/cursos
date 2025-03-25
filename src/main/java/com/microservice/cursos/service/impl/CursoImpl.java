@@ -4,6 +4,7 @@ import com.microservice.cursos.model.Curso;
 import com.microservice.cursos.model.EstudianteDTO;
 import com.microservice.cursos.repository.CursoRepository;
 import com.microservice.cursos.service.CursoService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -68,6 +69,7 @@ public class CursoImpl implements CursoService {
     }
 
     @Override
+    @CircuitBreaker(name = "kafkaService", fallbackMethod = "fallBackKafka")
     public Mono<Void> enviarMensajeAKafka(String topic, String key, Object mensaje) {
         return webClientBuilder.build()
                 .post()
@@ -76,6 +78,11 @@ public class CursoImpl implements CursoService {
                 .bodyValue(mensaje)
                 .retrieve()
                 .bodyToMono(Void.class);
+    }
+
+    private Mono<Void> fallBackKafka(String topic, String key, Object mensaje, Throwable t){
+        System.out.println("Circuit Breaker activado, servicio no disponible " + mensaje +" Topic: "+ topic + " Key: "+key);
+        return Mono.empty();
     }
 
 }
