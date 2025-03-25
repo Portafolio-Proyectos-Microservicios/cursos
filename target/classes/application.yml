@@ -1,5 +1,5 @@
 server:
- port: 8091
+port: 8091
 
 spring:
  application:
@@ -7,8 +7,8 @@ spring:
  banner:
   location: classpath:banner/banner.txt
 
-# Config Server
+ # Config Server
  config:
   import: "configserver:"
-  cloud:
-  cloud.config.uri: http://configserver:8888
+ cloud:
+ cloud.config.uri: http://configserver:8888
